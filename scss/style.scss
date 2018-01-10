@@ -1,154 +1,103 @@
-body{
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  font: 100%/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: #fff;
-  color: #444;
+@import 'variables';
+@import 'mixins';
+
+body, html {
+  @include flex(column, center, center);
+  font: 100%/1.5 $font-stack;
+  background-color: $light;
+  color: $dark;
   width: 100vw;
 }
 
-*, *::after, *::before{
-  box-sizing: border-box;
-}
 
 a {
-  color: #a44290;
+  color: $accent;
   transition: all 300ms;
   text-decoration: none;
-  border-bottom: 2px solid #a44290;
-}
-
-a:hover {
-  color: #5b2550;
-  border-bottom-color: #5b2550;
+  border-bottom: 2px solid $accent;
+  &:hover{
+    color: darken($accent, 20%);
+    border-bottom-color: darken($accent, 20%);
+  }
 }
 
 .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(90deg, #f79533, #f79533 15%, #ef4e7b 30%, #a166ab 44%, #1098ad 72%, #07b39b 86%, #07b39b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  @include flex(column, center, center);
+  @include text-gradient();
   flex: 0 0 20rem;
   width: 100%;
-}
-
-.header h1 {
-  text-transform: uppercase;
-  font-size: 4rem;
-  letter-spacing: .5rem;
-  padding-bottom: 4rem;
+  h1 {
+    text-transform: uppercase;
+    font-size: 4rem;
+    letter-spacing: .5rem;
+    padding-bottom: $main-spacing*2;
+  }
 }
 
 .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 0 2rem;
-}
-
-@media screen and (min-width: 960px) {
-  .container {
-      flex-direction: row;
-      align-items: flex-start;
- }
+  @include flex(column, flex-start, center);
+  padding: 0 $main-spacing;
+  @media #{$desktop} {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 
 .main-nav {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  margin-bottom: 2rem;
+  @include flex(row, space-around, center);
+  margin-bottom: $main-spacing;
   flex: 1;
-}
-
-.main-nav a {
-  padding: 1rem 2rem;
-}
-
-@media screen and (min-width: 960px) {
-  .main-nav {
-      flex: 1;
-      flex-direction: column;
- }
+  a {
+    padding: $main-spacing/2 $main-spacing;
+  }
+  @media #{$desktop}{
+    flex: 1;
+    flex-direction: column;
+  }
 }
 
 .content {
   flex: 1;
-  padding: 0 1rem;
-}
-
-@media screen and (min-width: 960px) {
-  .content {
-      flex: 3;
- }
+  padding: 0 $main-spacing/2;
+  @media #{$desktop}{
+    flex: 3;
+  }
 }
 
 .article {
   width: 100%;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #a44290;
-}
-
-.article-title:hover {
-  transition: color 300ms;
-  color: #a44290;
-}
-
-.article-img {
-  width: 100%;
-  height: auto;
-  max-height: 400px;
-}
-
-.article-meta {
-  color: #aaaaaa;
-}
-
-@media screen and (min-width: 960px) {
-  .article {
-      width: 80%;
- }
+  margin-bottom: $main-spacing;
+  border-bottom: 1px solid $accent;
+  &-title:hover {
+    transition: color 300ms;
+    color: $accent;
+  }
+  &-img {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+  }
+  &-meta {
+    color: lighten($dark, 40%);
+  }
+  @media #{$desktop} {
+    width: 80%;
+  }
 }
 
 .main-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  @include flex(row, center, center);
   width: 100%;
-  padding: 2rem;
-  background-color: #cc80bc;
+  padding: $main-spacing;
+  background-color: lighten($accent, 20%);
 }
 
-.footer-nav a {
-  color: #fff;
-  margin: 0 2rem;
-}
-
-@media screen and (min-width: 960px) {
-  .footer-nav {
-      flex-direction: row;
- }
+.footer-nav {
+  a {
+    color: $light;
+    margin: 0 $main-spacing;
+  }
+  @media #{$desktop}{
+    flex-direction: row;
+  }
 }

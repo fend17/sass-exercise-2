@@ -1,0 +1,20 @@
+@mixin flex($direction: row, $justify: flex-start, $align: flex-start){
+  display: -webkit-box;  /* OLD - iOS 6-, Safari 3.1-6, BB7 */
+  display: -ms-flexbox;  /* TWEENER - IE 10 */
+  display: -webkit-flex; /* NEW - Safari 6.1+. iOS 7.1+, BB10 */
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+
+@mixin gradient($start: #444, $end: #fff){
+  background: linear-gradient($start, $end);
+}
+
+@mixin text-gradient(){
+  background: linear-gradient(90deg,#f79533,#f79533 15%,#ef4e7b 30%,#a166ab 44%,#1098ad 72%,#07b39b 86%,#07b39b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
